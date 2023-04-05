@@ -1,0 +1,35 @@
+{
+    "version":"2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}/build" //执行命令的目录
+    },
+    "tasks":[
+        {
+            "label": "cmake",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                ".."
+            ],
+        },
+        {
+            "label": "make",//要执行的第二个make命令
+            "type": "shell",
+            "command": "make",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+    
+        },
+        {
+            "label": "Build",
+            "dependsOrder":"sequence",
+            "dependsOn":[
+                "cmake",
+                "make"
+                ],//指定，在执行make之前，需先执行cmake
+        }
+    ]
+}
